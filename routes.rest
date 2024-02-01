@@ -38,6 +38,26 @@ GET https://cse341-kq2t.onrender.com/contacts
 ###
 GET https://cse341-kq2t.onrender.com/contacts/65b348b5b8607af3322e32d1
 ###
-GET https://cse341-kq2t.onrender.com/contacts/65b3539cb8607af3322e32d4
+POST https://cse341-kq2t.onrender.com/contacts/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alicejohnson@example.com",
+    "favoriteColor": "Blue",
+    "birthday": "5/12/1985"
+}
 ###
-GET https://cse341-kq2t.onrender.com/contacts/65b353a7b8607af3322e32d5
+PUT https://cse341-kq2t.onrender.com/contacts/65b3539cb8607af3322e32d4 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "beta@gmail.com",
+    "favoriteColor": "Yellow",
+    "birthday": "03/10/95"
+}
+### Delete Contact
+DELETE https://cse341-kq2t.onrender.com/contacts/65bb2c5ec049412b2d78beb1 HTTP/1.1
