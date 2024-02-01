@@ -28,24 +28,17 @@ const getSingle = async (req, res, next) => {
 }
 
 const create = async (req, res, next) => {
-    try {
-        const contact = {
-            _id: new ObjectId(),
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            favoriteColor: req.body.favoriteColor,
-            birthday: req.body.birthday,
-        }
-        await mongodb
-            .getDb().db().collection('contacts').insertOne(contact)
-            .then(result => {
-                console.log(result);
-                console.log(result._id)
-                // res.redirect('/'); // This is after testing that the console.log worked.
-            });
-        
-    } catch (error) {
+    const contact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
+    };
+    const response = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    if (response.acknowledged) {
+        res.status(201).json(response);
+    } else {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -65,7 +58,7 @@ const update = async (req, res, next) => {
                 },
             });
             if(response.modifiedCount > 0) {
-                res.status(200).json({ message: 'Update successful' });
+                res.status(204).send();
             } else {
                 res.status(500).json({ error: 'Internal Server Error' });
             }
@@ -81,7 +74,7 @@ const remove = async (req, res, next) => {
             { _id: new ObjectId(req.params.id) }, true);
 
         if (result.deletedCount > 0 ) {
-            res.status(200).json({ message: 'Update successful' });
+            res.status(200).send();
         } else {
             res.status(500).json({ error: 'Internal Server Error' });
         }
