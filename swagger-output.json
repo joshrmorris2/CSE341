@@ -5,9 +5,9 @@
     "description": "Customers API",
     "version": "1.0.0"
   },
-  "host": "https://cse341-kq2t.onrender.com",
+  "host": "cse341-kq2t.onrender.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/api-docs": {
       "get": {
